@@ -1,12 +1,30 @@
+import axios from 'axios'
 import { useState } from 'react'
 
-export default function PlayingArea({ setRecentScore }) {
+export default function PlayingArea({onGameEnd}) {
     const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 50) + 1)
     const [guess, setGuess] = useState('')
     const [feedback, setFeedback] = useState('')
     const [chancesLeft, setChancesLeft] = useState(5)
     const [previousGuesses, setPreviousGuesses] = useState([]) 
     const [gameOver, setGameOver] = useState(false)
+
+    const sendGameResult = async (result) => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.post(`http://localhost:5000/game/${result}`, 
+                { result }, 
+                {
+                    headers: {
+                        Authorization: token,
+                    },
+                }
+            );
+            onGameEnd()
+        } catch (err) {
+            console.error('Failed to send game result:', err);
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,7 +45,7 @@ export default function PlayingArea({ setRecentScore }) {
         if (userGuess === randomNumber) {
             setFeedback('Congratulations! You guessed the right number!')
             setGameOver(true)
-            calculateScore(true)
+            sendGameResult('won')
             return
         }
 
@@ -41,16 +59,9 @@ export default function PlayingArea({ setRecentScore }) {
 
         if (chancesLeft - 1 === 0) {
             setFeedback(`Game over! The correct number was ${randomNumber}`)
-            calculateScore(false)
             setGameOver(true)
-        }
-    }
+            sendGameResult('lost')
 
-    const calculateScore = (won) => {
-        if (won) {
-            setRecentScore(prevScores => ['Win', ...prevScores])
-        } else {
-            setRecentScore(prevScores => ['Loss', ...prevScores])
         }
     }
 

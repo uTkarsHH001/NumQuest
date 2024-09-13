@@ -3,10 +3,10 @@ export default function RecentScores({ recentScore }) {
         <>
             <div className="bg-[#273b40] w-full h-fit rounded-3xl overflow-hidden">
                 <p className="text-center font-semibold bg-gray-600 p-1">Recent Scores</p>
-                <div className="p-2">
+                <div className="p-2 flex flex-col-reverse">
                     {recentScore.map((rs, index) => (
-                        <p key={index} className={`p-1 border-b text-center font-medium ${rs === `Loss` ? `text-red-600` : `text-green-600`}`}>
-                            {rs}!
+                        <p key={index} className={`p-1 border-b text-center font-medium ${rs.result === `Lost` ? `text-red-600` : `text-green-600`}`}>
+                            {rs.result}!
                         </p>
                     ))}
                 </div>
