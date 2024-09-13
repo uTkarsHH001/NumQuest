@@ -12,7 +12,7 @@ export default function PlayingArea({onGameEnd}) {
     const sendGameResult = async (result) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://localhost:5000/game/${result}`, 
+            await axios.post(`https://numquest.onrender.com/game/${result}`, 
                 { result }, 
                 {
                     headers: {

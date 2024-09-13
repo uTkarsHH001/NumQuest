@@ -24,7 +24,7 @@ const Signup = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
-                await axios.post('http://localhost:5000/signup', formData);
+                await axios.post('https://numquest.onrender.com//signup', formData);
                 onClick(true);
                 setFormData({
                     username: '',

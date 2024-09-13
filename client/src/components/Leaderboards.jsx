@@ -9,7 +9,7 @@ export default function Leaderboard() {
         const fetchLeaderboard = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const response = await axios.get('http://localhost:5000/game/leaderboard', 
+                const response = await axios.get('https://numquest.onrender.com/game/leaderboard', 
                     {
                         headers:{
                             Authorization: token

@@ -18,7 +18,7 @@ export default function Game(){
     const fetchUser = async () => {
         try {
             const token = localStorage.getItem('token')
-            const response = await axios.get('http://localhost:5000/user', 
+            const response = await axios.get('https://numquest.onrender.com/user', 
                 {
                     headers: {
                         Authorization: token
