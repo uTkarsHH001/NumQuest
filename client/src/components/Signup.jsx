@@ -2,7 +2,7 @@ import { useState } from "react";
 import LabelledInput from "./LabelledInput";
 import axios from "axios";
 
-const Signup = ({ onClick }) => {
+const Signup = ({ onClick, setIsLoading }) => {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -24,12 +24,14 @@ const Signup = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
-                await axios.post('https://numquest.onrender.com//signup', formData);
+                setIsLoading(true)
+                await axios.post('https://numquest.onrender.com/signup', formData);
                 onClick(true);
                 setFormData({
                     username: '',
                     password: ''
                 });
+                setIsLoading(false)
             } catch (error) {
                 const axiosError = error;
                 setServerError(axiosError.response?.data?.error || 'Something went wrong. Please try again.');

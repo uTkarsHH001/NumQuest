@@ -1,13 +1,13 @@
 import { useState } from "react";
 import LabelledInput from "./LabelledInput";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
-const Signin = ({ onClick }) => {
+const Signin = ({ onClick, setIsLoading }) => {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
-    });
+    })
     const [formError, setFormError] = useState({});
     const [serverError, setServerError] = useState('');
     const navigate = useNavigate();
@@ -26,11 +26,13 @@ const Signin = ({ onClick }) => {
         e.preventDefault();
         if (validate()) {
             try {
+                setIsLoading(true)
                 const response = await axios.post(`https://numquest.onrender.com/login`, {
                     username: formData.username,
                     password: formData.password
                 });
                 localStorage.setItem('token', `Bearer ${response.data.token}`);
+                setIsLoading(false)
                 navigate('/game');
             } catch (error) {
                 setServerError(error?.response?.data?.msg)
