@@ -59,7 +59,7 @@
 
 
 import { useEffect, useState } from "react";
-import Leaderboard from "../components/Leaderboards";
+import Leaderboard from "../components/Leaderboard";
 import PlayingArea from "../components/PlayingArea";
 import RecentScores from "../components/RecentScores";
 import Avatar from "react-avatar";
@@ -103,19 +103,22 @@ export default function Game() {
     const toggleSidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
     };
-
+    console.log(recentScore)
     return (
         <div className="h-screen w-screen overflow-hidden tracking-widest text-white bg-zinc-800 lg:p-16 flex lg:space-x-8">
             <div className="text-3xl font-semibold absolute p-2 lg:hidden cursor-pointer" onClick={toggleSidebar}>
                 <GiHamburgerMenu />
             </div>
-            <Sidebar
-                username={username}
-                recentScore={recentScore}
-                isVisible={isSidebarVisible}
-                onClose={toggleSidebar}
-            />
-            <div className={`lg:w-1/5 hidden lg:block ${isSidebarVisible ? 'lg:w-0' : 'lg:w-0'}`}>
+            {/* {recentScore &&  */}
+                <Sidebar
+                    username={username}
+                    recentScore={recentScore}
+                    isVisible={isSidebarVisible}
+                    onClose={toggleSidebar}
+                />
+            {/* } */}
+            <div className={`lg:w-1/5 hidden lg:block `}>
+                {/* The sidebar will be hidden on large screens */}
                 {recentScore && <RecentScores recentScore={recentScore} />}
                 <div className="flex items-center space-x-2 lg:absolute lg:left-10 lg:bottom-10">
                     <Avatar name={username} size="45" className="rounded-full" />

@@ -23,6 +23,11 @@ export default function Auth(){
                     {isSignin ? <Signin onClick={setIsSignin} setIsLoading={setIsLoading} /> : <Signup onClick={setIsSignin} setIsLoading={setIsLoading}/> }
                 </div>
             </div>
+            <div className="text-white tracking-widest absolute top-5 right-5">
+                <p className="font-bold">For demo User</p>
+                <p>Username - Utkarsh</p>
+                <p>Password - utk</p>
+            </div>
         </>
     )
 }

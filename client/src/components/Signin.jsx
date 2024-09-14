@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom"
 
 const Signin = ({ onClick, setIsLoading }) => {
     const [formData, setFormData] = useState({
-        username: '',
-        password: ''
+        username: 'Utkarsh',
+        password: 'utk'
     })
     const [formError, setFormError] = useState({});
     const [serverError, setServerError] = useState('');
