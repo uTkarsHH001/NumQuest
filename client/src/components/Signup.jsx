@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LabelledInput from "./LabelledInput";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const Signup = ({ onClick, setIsLoading }) => {
     const [formData, setFormData] = useState({
@@ -99,3 +100,8 @@ const Signup = ({ onClick, setIsLoading }) => {
 };
 
 export default Signup;
+
+Signup.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired
+};

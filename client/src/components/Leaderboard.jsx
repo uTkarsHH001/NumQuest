@@ -29,7 +29,7 @@ export default function Leaderboard() {
 
     if (loading) {
         return (
-            <div className="bg-[#273b40] hidden lg:block w-1/5 h-fit rounded-3xl rounded-lg overflow-hidden">
+            <div className="bg-[#273b40] lg:block w-2/4 lg:w-full h-fit mx-auto rounded-3xl rounded-lg overflow-hidden">
                 <p className="text-center font-semibold bg-gray-600 p-1">Leaderboard</p>
                 <div className="p-2">
                     <p className="text-center font-medium">Loading...</p>
@@ -39,7 +39,7 @@ export default function Leaderboard() {
     }
 
     return (
-        <div className="bg-[#273b40] hidden lg:block w-1/5 h-fit rounded-3xl rounded-lg overflow-hidden">
+        <div className="bg-[#273b40] w-2/4 mx-auto lg:w-full h-fit rounded-3xl rounded-lg overflow-hidden">
             <p className="text-center font-semibold bg-gray-600 p-1">Leaderboard</p>
             <div className="p-2">
                 {leaderboard.length > 0 ? (

@@ -4,21 +4,17 @@ import RecentScores from './RecentScores';
 import Leaderboard from './Leaderboard';
 import { IoClose } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
-
+import PropTypes from 'prop-types';  
 
 export default function Sidebar({ username, recentScore, isVisible, onClose }) {
 
     const [activeSection, setActiveSection] = useState(null);
 
-    console.log("rs----",recentScore)
-
     return (
         <div className={`fixed top-0 left-0 h-full bg-gray-800 text-white transition-transform transform ${isVisible ? 'translate-x-0' : '-translate-x-full'} lg:hidden w-full sm:w-1/2 md:w-1/3`}>
             {activeSection === 'recent' &&
-
                 <>
                     <button onClick={() => {
-                        // onClose()
                         setActiveSection(null)
                     }} className='p-4 text-3xl'><IoArrowBackCircle /></button>
                     <RecentScores recentScore={recentScore} />
@@ -60,13 +56,20 @@ export default function Sidebar({ username, recentScore, isVisible, onClose }) {
                     </div>
                 </>
             }
-
-            
-            {/* Conditionally render RecentScores or Leaderboard based on activeSection */}
-            {/* <div className="p-4">
-                {activeSection === 'recent' && <RecentScores recentScores={recentScores} />}
-                {activeSection === 'leaderboard' && <Leaderboards leaderboard={leaderboard} />}
-            </div> */}
         </div>
     );
 }
+
+
+Sidebar.propTypes = {
+    username: PropTypes.string.isRequired,           
+    recentScore: PropTypes.arrayOf(                  
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,        
+            score: PropTypes.number.isRequired,      
+            date: PropTypes.string.isRequired        
+        })
+    ).isRequired,
+    isVisible: PropTypes.bool.isRequired,           
+    onClose: PropTypes.func.isRequired               
+};

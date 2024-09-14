@@ -2,6 +2,7 @@ import { useState } from "react";
 import LabelledInput from "./LabelledInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
+import PropTypes from "prop-types";
 
 const Signin = ({ onClick, setIsLoading }) => {
     const [formData, setFormData] = useState({
@@ -90,3 +91,8 @@ const Signin = ({ onClick, setIsLoading }) => {
 };
 
 export default Signin;
+
+Signin.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired
+};

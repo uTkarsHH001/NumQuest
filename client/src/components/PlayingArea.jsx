@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import PropTypes from 'prop-types';
 
 export default function PlayingArea({onGameEnd}) {
     const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 50) + 1)
@@ -108,3 +109,7 @@ export default function PlayingArea({onGameEnd}) {
         </>
     )
 }
+
+PlayingArea.propTypes = {
+    onGameEnd: PropTypes.func.isRequired, 
+};
